@@ -3,6 +3,8 @@ action :install do
   arguments = initialize_arguments(new_resource)
 
 	execute "install-composer-packages" do
+    user new_resource.user
+    group new_resource.group
 		cwd new_resource.install_path
 		command "composer install #{arguments}"
 		
@@ -17,6 +19,8 @@ action :update do
   arguments = initialize_arguments(new_resource)
 	
 	execute "update-composer-packages" do
+    user new_resource.user
+    group new_resource.group
 		cwd new_resource.install_path
 		command "composer update #{arguments}"
 		
