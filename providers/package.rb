@@ -115,6 +115,8 @@ def initialize_arguments(new_resource)
   end
   if new_resource.dev
     arguments += " --dev"
+  else
+    arguments += " --no-dev"
   end
   if new_resource.prefer_source
     arguments += " --prefer-source"
