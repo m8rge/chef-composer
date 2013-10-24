@@ -81,7 +81,7 @@ This will update all configured packages from ``composer.json``.
     action :update
   end
 
-Install packages without exiting ``composer.json`` file
+Install packages without existing ``composer.json`` file
 ================
 
 Create a new project
@@ -136,7 +136,7 @@ For detailed usage instructions visit https://github.com/applicationsonline/libr
   site 'http://community.opscode.com/api/v1'
 
   cookbook "composer",
-    :git => "git://github.com/Morphodo/composer.git"
+    :git => "git://github.com/Morphodo/chef-composer.git"
 
 Using knife-github-cookbooks
 -----------------
@@ -148,7 +148,7 @@ plugin:
 
     gem install knife-github-cookbooks
     cd chef-repo
-    knife cookbook github install Morphodo/composer/0.1.0
+    knife cookbook github install Morphodo/chef-composer/0.1.0
 
 
 As a Git Submodule
@@ -159,7 +159,7 @@ submodules. This is accomplishes like so:
 ::
 
     cd chef-repo
-    git submodule add git://github.com/Morphodo/composer.git cookbooks/composer
+    git submodule add git://github.com/Morphodo/chef-composer.git cookbooks/composer
     git submodule init && git submodule update
 
 Using ``git clone``
@@ -168,19 +168,25 @@ Just go into your ``cookbooks`` directory and clone this repository.
 
 ::
 
-  git clone git://github.com/Morphodo/composer.git
+  git clone git://github.com/Morphodo/chef-composer.git composer
 
 As a Tarball
 -----------------
 If the cookbook needs to downloaded temporarily just to be uploaded to a Chef
 Server or Opscode Hosted Chef, then a tarball installation might fit the bill:
 
+Good to know
+--------------
+If you are looking for `App Entwicklung`_ you can visit Morphodo_ and get in touch.
+
 ::
 
     cd chef-repo/cookbooks
-    curl -Ls https://github.com/Morphodo/composer/0.1.0 | tar xfz - && \
-      mv Morphodo-composer-* composer
+    curl -Ls https://github.com/Morphodo/chef-composer/0.1.0 | tar xfz - && \
+      mv Morphodo-chef-composer-* composer
 
 .. _PylonWorks.Essencebase: http://github.com/PylonWorks/essencebase-chef-recipe
 .. _Packagist : http://packagist.org/
 .. _TYPO3-Flow: https://github.com/Morphodo/typo3_flow-chef-recipe
+.. _App Entwicklung: http://www.morphodo.com/de/app-entwicklung.html
+.. _Morphodo: http://www.morphodo.com/de/the-web-company.html
