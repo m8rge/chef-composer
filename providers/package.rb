@@ -108,7 +108,7 @@ action :dump_autoload do
 end
 
 def initialize_arguments(new_resource)
-  arguments = "--no-interaction --no-ansi -q"
+  arguments = "--no-interaction --no-ansi"
 
   if new_resource.verbose
     arguments = " --no-interaction --verbose"
