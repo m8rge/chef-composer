@@ -7,6 +7,7 @@ action :install do
 		group new_resource.group
 		cwd new_resource.install_path
 		command "composer install #{arguments}"
+		environment ({'HOME' => node['etc']['passwd'][new_resource.user]['dir']})
 		
 		only_if "composer help"
 	end
@@ -23,6 +24,7 @@ action :update do
     group new_resource.group
 		cwd new_resource.install_path
 		command "composer update #{arguments}"
+		environment ({'HOME' => node['etc']['passwd'][new_resource.user]['dir']})
 		
 		only_if "composer help"
 	end
