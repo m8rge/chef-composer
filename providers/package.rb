@@ -10,6 +10,7 @@ action :install do
 		environment ({'HOME' => node['etc']['passwd'][new_resource.user]['dir']})
 		
 		only_if "composer help"
+		not_if "test -f " + ::File.join(new_resource.install_path, 'composer.lock')
 	end
 
 	new_resource.updated_by_last_action(true)
