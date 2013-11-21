@@ -37,7 +37,7 @@ action :update do
 		group new_resource.group
 		cwd new_resource.target_dir
 		command "composer self-update --no-ansi --no-interaction"
-		environment ({'HOME' => node['etc']['passwd'][new_resource.user]['dir']})
+		environment ({'HOME' => node['etc']['passwd'][new_resource.owner]['dir']})
 	end
 
 	new_resource.updated_by_last_action(true)
