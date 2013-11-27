@@ -3,6 +3,7 @@ PHP composer chef recipe
 ++++++++++++++++++++++++
 
 :Author: Michael Klapper <development@morphodo.com>
+:Maintainer: Putilov Andrey <to.merge@gmail.com>
 :Description: Chef recipe to manage/install composer packages
 :Homepage: http://www.morphodo.com
 :Tags: PHP, Composer
