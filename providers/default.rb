@@ -1,4 +1,8 @@
 action :install do
+    ohai "reload_passwd" do
+        plugin "passwd"
+    end
+
     target_dir = new_resource.target_dir ? new_resource.target_dir : ::File.join(node['etc']['passwd'][new_resource.owner]['dir'], 'bin')
     Chef::Log.info("Deploy composer to: #{target_dir}")
 
@@ -25,12 +29,12 @@ action :install do
 end
 
 action :update do
-    target_dir = new_resource.target_dir ? new_resource.target_dir : ::File.join(node['etc']['passwd'][new_resource.owner]['dir'], 'bin')
-    Chef::Log.info("Upgrade composer in location: #{target_dir}")
-
     ohai "reload_passwd" do
         plugin "passwd"
     end
+
+    target_dir = new_resource.target_dir ? new_resource.target_dir : ::File.join(node['etc']['passwd'][new_resource.owner]['dir'], 'bin')
+    Chef::Log.info("Upgrade composer in location: #{target_dir}")
 
     execute "upgrade composer" do
         user new_resource.owner

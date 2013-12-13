@@ -1,12 +1,12 @@
 action :install do
+    ohai "reload_passwd" do
+        plugin "passwd"
+    end
+
     Chef::Log.info("Install package in directory: #{new_resource.project_path}")
     composer_dir = new_resource.composer_dir ? new_resource.composer_dir : ::File.join(node['etc']['passwd'][new_resource.user]['dir'], 'bin')
     composer_bin = ::File.join(composer_dir, 'composer.phar')
     arguments = initialize_arguments(new_resource)
-
-    ohai "reload_passwd" do
-        plugin "passwd"
-    end
 
     execute "install-composer-packages" do
         user new_resource.user
@@ -23,14 +23,14 @@ action :install do
 end
 
 action :update do
+    ohai "reload_passwd" do
+        plugin "passwd"
+    end
+
     Chef::Log.info("Update package: #{new_resource.project_path}")
     composer_dir = new_resource.composer_dir ? new_resource.composer_dir : ::File.join(node['etc']['passwd'][new_resource.user]['dir'], 'bin')
     composer_bin = ::File.join(composer_dir, 'composer.phar')
     arguments = initialize_arguments(new_resource)
-
-    ohai "reload_passwd" do
-        plugin "passwd"
-    end
 
     execute "update-composer-packages" do
         user new_resource.user
