@@ -28,6 +28,10 @@ action :update do
     target_dir = new_resource.target_dir ? new_resource.target_dir : ::File.join(node['etc']['passwd'][new_resource.owner]['dir'], 'bin')
     Chef::Log.info("Upgrade composer in location: #{target_dir}")
 
+    ohai "reload_passwd" do
+        plugin "passwd"
+    end
+
     execute "upgrade composer" do
         user new_resource.owner
         group new_resource.group

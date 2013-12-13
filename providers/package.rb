@@ -4,6 +4,10 @@ action :install do
     composer_bin = ::File.join(composer_dir, 'composer.phar')
     arguments = initialize_arguments(new_resource)
 
+    ohai "reload_passwd" do
+        plugin "passwd"
+    end
+
     execute "install-composer-packages" do
         user new_resource.user
         group new_resource.group
@@ -23,6 +27,10 @@ action :update do
     composer_dir = new_resource.composer_dir ? new_resource.composer_dir : ::File.join(node['etc']['passwd'][new_resource.user]['dir'], 'bin')
     composer_bin = ::File.join(composer_dir, 'composer.phar')
     arguments = initialize_arguments(new_resource)
+
+    ohai "reload_passwd" do
+        plugin "passwd"
+    end
 
     execute "update-composer-packages" do
         user new_resource.user
