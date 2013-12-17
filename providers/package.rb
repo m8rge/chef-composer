@@ -1,10 +1,6 @@
 action :install do
-    ohai "reload_passwd" do
-        plugin "passwd"
-    end
-
-    Chef::Log.info("Install package in directory: #{new_resource.project_path}")
-    composer_dir = new_resource.composer_dir ? new_resource.composer_dir : ::File.join(node['etc']['passwd'][new_resource.user]['dir'], 'bin')
+    log "Install package in directory: #{new_resource.project_path}"
+    composer_dir = ::File.join(new_resource.home, 'bin')
     composer_bin = ::File.join(composer_dir, 'composer.phar')
     arguments = initialize_arguments(new_resource)
 
@@ -13,7 +9,7 @@ action :install do
         group new_resource.group
         cwd new_resource.project_path
         command composer_bin + " install #{arguments}"
-        environment ({'HOME' => node['etc']['passwd'][new_resource.user]['dir']})
+        environment ({'HOME' => new_resource.home})
 
         only_if composer_bin + " help"
         not_if "test -f " + ::File.join(new_resource.project_path, 'composer.lock')
@@ -23,12 +19,8 @@ action :install do
 end
 
 action :update do
-    ohai "reload_passwd" do
-        plugin "passwd"
-    end
-
-    Chef::Log.info("Update package: #{new_resource.project_path}")
-    composer_dir = new_resource.composer_dir ? new_resource.composer_dir : ::File.join(node['etc']['passwd'][new_resource.user]['dir'], 'bin')
+    log "Update package: #{new_resource.project_path}"
+    composer_dir = ::File.join(new_resource.home, 'bin')
     composer_bin = ::File.join(composer_dir, 'composer.phar')
     arguments = initialize_arguments(new_resource)
 
@@ -37,7 +29,7 @@ action :update do
         group new_resource.group
         cwd new_resource.project_path
         command composer_bin + " update #{arguments}"
-        environment ({'HOME' => node['etc']['passwd'][new_resource.user]['dir']})
+        environment ({'HOME' => new_resource.home})
 
         only_if composer_bin + " help"
     end

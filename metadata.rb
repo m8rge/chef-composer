@@ -4,7 +4,7 @@ maintainer_email "to.merge@gmail.com"
 license          "MIT"
 description      "Recipe to install PHP package manager"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rst'))
-version          "0.9"
+version          "0.91"
 
 %w{ ubuntu debian centos redhat fedora }.each do |os|
     supports os

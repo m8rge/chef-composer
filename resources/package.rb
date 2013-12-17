@@ -3,6 +3,7 @@ actions :install, :update, :create_project, :create, :dump_autoload
 default_action :install
 
 attribute :project_path, :kind_of => [String, NilClass], :name_attribute => true
+attribute :home, :kind_of => String
 attribute :user, :kind_of => [String, Integer]
 attribute :group, :kind_of => [String, Integer]
 attribute :composer_dir, :kind_of => [String, NilClass]
